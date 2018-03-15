@@ -26,6 +26,7 @@ sudo systemctl start docker.service
 #### Python stuff
 sudo apt-get -y install python3-pip
 sudo pip3 install docker-compose
+sudo pip3 install -r requirements.txt
 
 #### Change into your git repository AWS scripts
 cd jupyter-datascience-notebook  # does this work within a bash script?
