@@ -2,6 +2,8 @@
 
 scripts to quickly set up an AWS instance
 
+/* Although [this post](https://hackernoon.com/keras-with-gpu-on-amazon-ec2-a-step-by-step-instruction-4f90364e49ac) describes a much easier variant of what I figured out here. */
+
 1. Create an EBS volume of at least 100GB
 1. Create an Ubuntu EC2 instance (t2.large, for 10ct/hr. The free tier's RAM won't suffice.). Make sure you choose the same availability zone (e.g. us-east-2c and us-east-2c. If it's 2a and 2c, they can't communicate!)
 1. Stop the instance.
