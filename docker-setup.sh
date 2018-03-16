@@ -5,7 +5,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 #### install docker
 sudo apt-get update
-sudo apt-get -y install docker docker.io docker-compose
+sudo apt-get -y install make docker docker.io docker-compose
 
 #### alternative docker repo:
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -19,11 +19,13 @@ sudo apt-get -y install docker docker.io docker-compose
 #### make docker store its images and temp files on your large EBS storage:
 # https://forums.docker.com/t/how-do-i-change-the-docker-image-installation-directory/1169
 sudo systemctl stop docker.service
-sudo mv /var/lib/docker /mnt/docker
+# sudo mv /var/lib/docker /mnt/docker  # if first time
+sudo rm -rf /var/lib/docker  # if second++ time
 sudo ln -s /mnt/docker /var/lib/docker
 sudo systemctl start docker.service
 
 #### Python stuff
+## NO WAIT do this IN your docker container :D
 sudo apt-get -y install python3-pip
 sudo pip3 install docker-compose
 sudo pip3 install keras  # will install scipy etc.
