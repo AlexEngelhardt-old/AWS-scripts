@@ -10,4 +10,4 @@ jupyter notebook --generate-config
 # c.NotebookApp.allow_origin = '*' #allow all origins
 # c.NotebookApp.ip = '0.0.0.0' # listen on all IPs
 
-cd /mnt; jupyter notebook --no-browser --port 8888
+cd /mnt; nohup jupyter notebook --no-browser --port 8888 &
