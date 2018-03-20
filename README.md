@@ -18,11 +18,8 @@ Scripts to quickly set up an AWS instance. Two variants, one that creates a Dock
 1. (optional) Add the AWS hostname to your `~/.ssh/config` and shortcut it to `aws`
 5. Connect to your instance: `ssh -i "MyFirstTestMachine.pem" ubuntu@ec2-18-218-63-138.us-east-2.compute.amazonaws.com` (or use the shorthand `aws`)
 1. In your EC2 instance, format the EBS volume: `mkfs.ext4 /dev/xvdf` (if you want to be thorough, `fdisk` it and create a partition /dev/xvdf1)
-1. edit /etc/fstab and add this line:
-
+1. edit /etc/fstab and add this line (double check that the EBS volume's device name is correct):
     `/dev/xvdf /mnt ext4 defaults 0 0"`
-
-  Double check that the EBS volume's device name is correct
 1. Do `mount -a`
 2. Upload your local data to the EBS volume. From your local machine, do this:
     `cd AWS-key-dir`
@@ -42,7 +39,7 @@ Run the commands in `docker-setup.sh` to prepare your machine for running a Dock
 
 Then, launch the container for the Jupyter Notebook by issuing 'make' (which in turn calls `docker-compose`)
 
-# Finally:
+# Finally
 
 Point your browser to `http://<your-host-name>.compute.amazonaws.com:8888` (replace your hostname obv) and pray.
 
