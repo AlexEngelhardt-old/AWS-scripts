@@ -1,10 +1,12 @@
 # AWS-scripts
 
-scripts to quickly set up an AWS instance
+Scripts to quickly set up an AWS instance. Two variants, one that creates a Docker container via `docker-compose`, and one that sets everything up natively on the instance.
 
 /* Although [this post](https://hackernoon.com/keras-with-gpu-on-amazon-ec2-a-step-by-step-instruction-4f90364e49ac) describes a much easier variant of what I figured out here. */
 
 /* If you want to run a machine with GPU support you have to request a limit increase on these instances (e.g. a p2.xlarge) because by default, you're not allowed to use one (y tho) */
+
+# Preliminary steps
 
 1. Create an EBS volume of at least 100GB
 1. Create an Ubuntu EC2 instance (t2.large, for 10ct/hr. The free tier's RAM won't suffice.). Make sure you choose the same availability zone (e.g. us-east-2c and us-east-2c. If it's 2a and 2c, they can't communicate!)
@@ -22,19 +24,30 @@ scripts to quickly set up an AWS instance
 
   Double check that the EBS volume's device name is correct
 1. Do `mount -a`
-2. Upload your local data to the EBS volume:
+2. Upload your local data to the EBS volume. From your local machine, do this:
     `cd AWS-key-dir`
     `scp -r -i MyFirstTestMachine.pem /home/alexx/github/kaggle/jigsaw-toxic-comment-classification-challenge/work/data ubuntu@ec2-18-216-16-165.us-east-2.compute.amazonaws.com:/mnt/`
-
 1. Git is already installed on the EC2 clusters. So just go:
     `git clone https://github.com/AlexEngelhardt/AWS-scripts.git`
 
 Then, use the .sh scripts from this repository to quickly install the necessary software for a specific taks and set up your environment.
 
-Finally, launch a docker container for the Jupyter Notebook by issuing 'make' (which in turn calls `docker-compose`)
+# Native
 
-### Finally:
+Just execute the preliminary steps above and then run `native-setup.sh` to host a Jupyter Notebook.
 
-Point your browser to `http://ec2-18-219-46-100.us-east-2.compute.amazonaws.com:8888` (replace your hostname obv) and pray.
+# Docker
 
-You'll need to issue a last `sudo docker container exec c5fc jupyter notebook list` (get the container ID by `sudo docker container ls`. Paste the token into the web browser and off you go!
+Run the commands in `docker-setup.sh` to prepare your machine for running a Docker container.
+
+Then, launch the container for the Jupyter Notebook by issuing 'make' (which in turn calls `docker-compose`)
+
+# Finally:
+
+Point your browser to `http://<your-host-name>.compute.amazonaws.com:8888` (replace your hostname obv) and pray.
+
+You'll need to issue a last `jupyter notebook list`. If you used Docker, get the container ID by `sudo docker container ls` and run `sudo docker container exec <container-id> jupyter notebook list` instead.
+
+Paste the token into the web browser and off you go!
+
+

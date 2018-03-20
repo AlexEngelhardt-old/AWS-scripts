@@ -25,10 +25,8 @@ sudo ln -s /mnt/docker /var/lib/docker
 sudo systemctl start docker.service
 
 #### Python stuff
-## NO WAIT do this IN your docker container :D
 sudo apt-get -y install python3-pip
 sudo pip3 install docker-compose
-sudo pip3 install keras  # will install scipy etc.
 
 #### Change into your git repository AWS scripts
 cd jupyter-datascience-notebook  # does this work within a bash script?
