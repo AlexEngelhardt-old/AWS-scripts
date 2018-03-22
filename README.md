@@ -9,7 +9,10 @@ Scripts to quickly set up an AWS instance. Two variants, one that creates a Dock
 # Preliminary steps
 
 1. Create an EBS volume of at least 100GB
-1. Create an Ubuntu EC2 instance (t2.large, for 10ct/hr. The free tier's RAM won't suffice.). Make sure you choose the same availability zone (e.g. us-east-2c and us-east-2c. If it's 2a and 2c, they can't communicate!)
+1. Create an Ubuntu EC2 instance.
+    1. If you want GPU, get a p2.xlarge (you must first request a limit increase with the support, this takes about 2 days). Make the HDD space have 16GB, the CUDA stuff is quite big.
+    2. If CPU is good enough, get a t2.large, for 10ct/hr. The free tier's RAM won't suffice.
+	3. Make sure you choose the same availability zone (e.g. us-east-2c and us-east-2c. If it's 2a and 2c, they can't communicate!)
 1. Stop the instance.
 1. [Attach the EBS volume to it](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html). Oddly, the AWS console will show it as being attached to e.g. /dev/sdf, but inside the device will really be /dev/xvdf.
 2. [Open port 8888](https://stackoverflow.com/questions/17161345/how-to-open-a-web-server-port-on-ec2-instance) on it to expose Jupyter Notebook. Make sure you `Add Rule`, not `Edit` the existing SSH tunnel.
@@ -31,7 +34,9 @@ Then, use the .sh scripts from this repository to quickly install the necessary 
 
 # Native
 
-Just execute the preliminary steps above and then run `native-setup.sh` to host a Jupyter Notebook.
+Just execute the preliminary steps above and then run `native-setup-cpu.sh` to host a Jupyter Notebook.
+
+If you want GPU support, then go through  `native-setup-gpu.sh` script.
 
 # Docker
 
