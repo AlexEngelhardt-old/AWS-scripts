@@ -8,6 +8,9 @@ sudo -H pip3 install keras tensorflow-gpu  # GPU-specific tensorflow
 ####
 ## Extra stuff if you want to enable GPU
 ## https://github.com/tensorflow/tensorflow/issues/15604
+
+## TODO this doesn't work yet.
+
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
 
 sudo dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
