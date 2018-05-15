@@ -6,5 +6,5 @@
 
 aws s3 cp s3://aws-bigdata-blog/artifacts/aws-blog-emr-jupyter/install-jupyter-emr5.sh .
 chmod ugo+x ./install-jupyter-emr5.sh
-./install-jupyter-emr5.sh --r --toree --ds-packages --user jupyter --password d04kjcd4t --jupyterhub --port 8885 --notebook-dir s3://aifora-jupyter-notebooks --python3
+./install-jupyter-emr5.sh --toree --ds-packages --user jupyter --password mypassword --jupyterhub --port 8885 --notebook-dir s3://your-bucket-path --python3
 echo "done"
